@@ -12,6 +12,5 @@ this project about hospital
    
 3) Project structure:
   /src  
-  /main  
-    /java  
+  /Main /Patient /Doctor /Appointment /Medicalrecord
    
