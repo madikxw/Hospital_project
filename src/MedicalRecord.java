@@ -1,40 +1,75 @@
-
-
 public class MedicalRecord {
     private String recordId;
-    private boolean has_Insurance;
+    private boolean hasInsurance;
     private double price;
     private String discount;
     private String notes;
-    public MedicalRecord(String recordId,
-                         double price){
+
+    // Constructor
+    public MedicalRecord(String recordId, double price) {
         this.recordId = recordId;
         this.price = price;
     }
-    public void setHas_Insurance(boolean has_Insurance){
-        this.has_Insurance = has_Insurance;
+
+    // Getter and Setter for recordId
+    public String getRecordId() {
+        return recordId;
     }
-    public void set_notes(String notes){
-        this.notes = notes;
+
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
     }
-    public String getNotes(){
+
+    // Getter and Setter for hasInsurance
+    public boolean isHasInsurance() {
+        return hasInsurance;
+    }
+
+    public void setHasInsurance(boolean hasInsurance) {
+        this.hasInsurance = hasInsurance;
+        calculateDiscount(); // Automatically update discount when insurance changes
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+        calculateDiscount(); // Recalculate discount if price changes
+    }
+
+
+    public String getNotes() {
         return notes;
     }
-    public void discount (){
-        if(has_Insurance == true) {
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+
+    public String getDiscount() {
+        return discount;
+    }
+
+
+    private void calculateDiscount() {
+        if (hasInsurance) {
             this.discount = "yes";
-            this.price *=0.3;
-        }else{
+            this.price *= 0.3;
+        } else {
             this.discount = "no";
         }
     }
-    public String toString(){
-        return
-                "ID: " + recordId  +
-                        "\nprice: " + price +
-                        "\nhas_Insurance: " + has_Insurance +
-                        "\ndiscount: " + discount;
 
+    @Override
+    public String toString() {
+        return "ID: " + recordId +
+                "\nPrice: " + price +
+                "\nHas Insurance: " + hasInsurance +
+                "\nDiscount applied: " + discount +
+                "\nNotes: " + notes;
     }
-
 }
