@@ -29,14 +29,19 @@ public class Main {
             System.out.println("Invalid input");
             return;
         }
-        Patient pat1 = new Patient(patientId, patientName, patientDisease, has_insurance);
+        Patient pat1 = new Patient(patientId, patientName, has_insurance);
+        pat1.setPatientDisease("curring");
         System.out.println(pat1.toString());
+        System.out.println(pat1.getPatientDisease());
         System.out.println("\n");
+
 
         //about medical record
 
         MedicalRecord record1 = new MedicalRecord("01", 1000.2);
         record1.setHas_Insurance(true);
+        record1.set_notes("Dwdw");
+        System.out.println(record1.getNotes());
         record1.discount();
         System.out.println(record1.toString());
 

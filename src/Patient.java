@@ -6,13 +6,26 @@ public class Patient {
 
     public Patient(int patientId,
                    String patientName,
-                   String patientDisease,
                    boolean has_insurance) {
         this.patientId = patientId;
         this.patientName = patientName;
-        this.patientDisease = patientDisease;
         this.has_insurance = has_insurance;
+
     }
+    public void setPatientDisease(String patientDisease){
+        this.patientDisease = patientDisease;
+
+    }
+
+    public  String getPatientDisease() {
+        return patientDisease;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+
     @Override
     public String toString() {
         return

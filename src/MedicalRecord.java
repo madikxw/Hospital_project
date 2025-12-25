@@ -14,6 +14,12 @@ public class MedicalRecord {
     public void setHas_Insurance(boolean has_Insurance){
         this.has_Insurance = has_Insurance;
     }
+    public void set_notes(String notes){
+        this.notes = notes;
+    }
+    public String getNotes(){
+        return notes;
+    }
     public void discount (){
         if(has_Insurance == true) {
             this.discount = "yes";
