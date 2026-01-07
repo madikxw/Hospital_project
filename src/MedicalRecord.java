@@ -1,9 +1,11 @@
+
 public class MedicalRecord {
     private String recordId;
     private boolean hasInsurance;
     private double price;
     private String discount;
     private String notes;
+
 
 
     public MedicalRecord(String recordId, double price) {
@@ -36,8 +38,13 @@ public class MedicalRecord {
     }
 
     public void setPrice(double price) {
-        this.price = price;
-        calculateDiscount(); // Recalculate discount if price changes
+        if(price <0){
+            System.out.println("ERROR:PRICE CANNOT BE NEGATIVE");
+        }else{
+            this.price = price;
+            calculateDiscount();
+        }
+
     }
 
 

@@ -1,23 +1,25 @@
+
 public class Doctor {
-    private String doctorId;
+    private int  doctorId;
     private String doctorName;
     private int experienceYears;
     private String specialization;
 
 
-    public Doctor(String doctorId, String doctorName, int experienceYears, String specialization) {
+
+    public Doctor(int  doctorId, String doctorName, int experienceYears, String specialization) {
         this.doctorId = doctorId;
         this.doctorName = doctorName;
         this.specialization = specialization;
-        setExperienceYears(experienceYears);
+        this.experienceYears = experienceYears;
     }
 
 
-    public String getDoctorId() {
+    public int getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(String doctorId) {
+    public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
     }
 
@@ -27,7 +29,12 @@ public class Doctor {
     }
 
     public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+
+        if(doctorName != null && doctorName.trim().isEmpty()){
+            this.doctorName = doctorName;
+        }else{
+            System.out.println("ERROR:NAME CANNOT BE EMPTY");
+        }
     }
 
 

@@ -1,16 +1,36 @@
+
 public class Patient {
     private int patientId;
     private String patientName;
     private String patientDisease;
-    private boolean hasInsurance;
+    private String hasInsurance;
+    private int patient_age;
 
-
-    public Patient(int patientId, String patientName, boolean hasInsurance) {
+    public Patient(int patientId,
+                   String patientName,
+                   int patient_age,
+                   String patientDisease, String hasInsurance){
         this.patientId = patientId;
         this.patientName = patientName;
+        this.patient_age = patient_age;
+        this.patientDisease  = this.patientDisease;
         this.hasInsurance = hasInsurance;
+
     }
 
+
+
+    public void setPatient_age(int patient_age) {
+        if (patient_age > 0) {
+            this.patient_age = patient_age;
+        } else if (patient_age <= 0) {
+            System.out.println("ERROR: THIS AGE CANNOT BE REAL ");
+        }
+
+    }
+    public int getPatient_age() {
+        return patient_age;
+    }
 
     public int getPatientId() {
         return patientId;
@@ -26,7 +46,12 @@ public class Patient {
     }
 
     public void setPatientName(String patientName) {
-        this.patientName = patientName;
+        if(patientName != null && !patientName.trim().isEmpty()){
+            this.patientName = patientName;
+
+        }else{
+            System.out.println("ERROR:NAME CANNOT BE EMPTY");
+        }
     }
 
 
@@ -39,13 +64,17 @@ public class Patient {
     }
 
 
-    public boolean isHasInsurance() {
-        return hasInsurance;
-    }
 
-    public void setHasInsurance(boolean hasInsurance) {
+    public void setHasInsurance(String  hasInsurance) {
         this.hasInsurance = hasInsurance;
     }
+
+    public  String getHasInsurance(){
+        return  hasInsurance;
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -54,4 +83,6 @@ public class Patient {
                 "\nDisease: " + patientDisease +
                 "\nInsurance: " + hasInsurance;
     }
+
+
 }
