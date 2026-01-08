@@ -5,10 +5,9 @@ import java.util.ArrayList;
 public class Main {
     public static void demonstratePolymorphism() {
         for (Appointment a : appointments) {
-            a.performAppointment(); // same call, different behavior
+            a.performAppointment(); 
         }
     }
-
     public static void addEmergencyAppointment() {
         Scanner scan = new Scanner(System.in);
 
@@ -199,7 +198,8 @@ public class Main {
         System.out.println("7. Add Emergency Appointment");
         System.out.println("8. View All Appointments");
         System.out.println("9. View Emergency Appointments");
-        System.out.println("10.Exit");
+        System.out.println("10. demonstratePolymorphism");
+        System.out.println("11.Exit");
         System.out.println("======================");
         System.out.print("Enter your choice:");
     }
@@ -215,6 +215,11 @@ public class Main {
         doctors.add(new Doctor(2, "John Smith", 10, "Cardiologist"));
         patients.add(new Patient(1, "Tom Hardy", 30, "Flu", "yes"));
         patients.add(new Patient(2, "Anna Lee", 25, "Cold", "no"));
+        appointments.add(new Appointment(1,"12.04.2024","13-00","Completed"));
+        appointments.add(new RegularAppointment(2, "12.04.2024", "14:00", false, "Consultation", "sceduled"));
+        appointments.add( new EmergencyAppointment(3,"09.09.2023","15-00",4, true,"Critical"));
+
+
 
 
 
@@ -253,8 +258,11 @@ public class Main {
                 case 9:
                     viewEmergencyAppointments();
                     break;
-
                 case 10:
+                    demonstratePolymorphism();
+                    break;
+
+                case 11:
                     System.out.println("Goodbye 👋");
                     running_menu = false;
                     break;

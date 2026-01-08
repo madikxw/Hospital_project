@@ -17,7 +17,7 @@ public class EmergencyAppointment extends  Appointment {
     }
     @Override
     public int getPriority() {
-        return severityLevel; // highest
+        return severityLevel;
     }
     public String assessRiskLevel() {
         if (severityLevel >= 4) {
