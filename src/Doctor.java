@@ -20,7 +20,11 @@ public class Doctor {
     }
 
     public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+        if(doctorId <0) {
+            this.doctorId = doctorId;
+        }else{
+            System.out.println("🚨ERROR:id CANNOT BE NEGATIVE");
+        }
     }
 
 
@@ -30,10 +34,10 @@ public class Doctor {
 
     public void setDoctorName(String doctorName) {
 
-        if(doctorName != null && doctorName.trim().isEmpty()){
+        if(doctorName != null && doctorName.isEmpty()){
             this.doctorName = doctorName;
         }else{
-            System.out.println("ERROR:NAME CANNOT BE EMPTY");
+            System.out.println("🚨ERROR:NAME CANNOT BE EMPTY");
         }
     }
 

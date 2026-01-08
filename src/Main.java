@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Main {
     public static void demonstratePolymorphism() {
         for (Appointment a : appointments) {
-            a.performAppointment(); 
+            a.performAppointment();
         }
     }
     public static void addEmergencyAppointment() {

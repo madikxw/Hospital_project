@@ -1,6 +1,6 @@
 public class RegularAppointment extends  Appointment{
     private boolean followUp;
-    private String visitType;    // Check-up or//  Consultatio
+    private String visitType;
 
     public   RegularAppointment(int Appointment_id,
                                 String Date,

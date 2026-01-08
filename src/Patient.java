@@ -37,7 +37,11 @@ public class Patient {
     }
 
     public void setPatientId(int patientId) {
-        this.patientId = patientId;
+        if(patientId <=0) {
+            this.patientId = patientId;
+        }else{
+            System.out.println("🚨ERROR:id CANNOT BE NEGATIVE");
+        }
     }
 
 
@@ -46,7 +50,7 @@ public class Patient {
     }
 
     public void setPatientName(String patientName) {
-        if(patientName != null && !patientName.trim().isEmpty()){
+        if(patientName != null && !patientName.isEmpty()){
             this.patientName = patientName;
 
         }else{
