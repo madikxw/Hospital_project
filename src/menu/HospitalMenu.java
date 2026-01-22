@@ -13,6 +13,7 @@ import java.util.ArrayList;
      public HospitalMenu() {
          scanner = new Scanner(System.in);
      }
+     
      @Override
      public void run(){
          boolean running_time = true;
@@ -67,9 +68,7 @@ import java.util.ArrayList;
                  scanner.nextLine();
 
              }
-
          }
-         scanner.close();
      }
 
      @Override
