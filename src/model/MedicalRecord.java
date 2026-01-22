@@ -1,6 +1,7 @@
+package model;
 
 public class MedicalRecord {
-    private String recordId;
+    private int recordId;
     private boolean hasInsurance;
     private double price;
     private String discount;
@@ -8,18 +9,23 @@ public class MedicalRecord {
 
 
 
-    public MedicalRecord(String recordId, double price) {
+    public MedicalRecord(int recordId, double price) {
         this.recordId = recordId;
         this.price = price;
     }
 
 
-    public String getRecordId() {
+    public int  getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(String recordId) {
-        this.recordId = recordId;
+    public void setRecordId(int recordId) {
+        if(recordId <=0){
+            throw new IllegalArgumentException("ID cannot be negative or zero");
+        }else{
+            this.recordId = recordId;
+
+        }
     }
 
 
@@ -39,7 +45,7 @@ public class MedicalRecord {
 
     public void setPrice(double price) {
         if(price <0){
-            System.out.println("ERROR:PRICE CANNOT BE NEGATIVE");
+            throw new IllegalArgumentException("PRICE CANNOT BE NEGATIVE");
         }else{
             this.price = price;
             calculateDiscount();

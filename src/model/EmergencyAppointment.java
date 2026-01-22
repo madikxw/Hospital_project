@@ -1,4 +1,6 @@
-public class EmergencyAppointment extends  Appointment {
+package model;
+
+public class EmergencyAppointment extends Appointment  implements RiskAssessable {
     private int severityLevel;
     private boolean ambulanceRequired;
     public EmergencyAppointment(int Appointment_id,
@@ -13,7 +15,11 @@ public class EmergencyAppointment extends  Appointment {
     }
     @Override
     public String getAppointmentType() {
-        return "Emergency Appointment";
+        return "Emergency model.Appointment";
+    }
+    @Override
+    public String assessRiskleve(){
+        return "HIGH";
     }
     @Override
     public int getPriority() {

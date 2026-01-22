@@ -12,5 +12,5 @@ this project about hospital
    
 3) Project structure:
   /src  
-  /Main /Patient /Doctor /Appointment /Medicalrecord
+  /Main /model.Patient /model.Doctor /model.Appointment /Medicalrecord
    

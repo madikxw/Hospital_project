@@ -1,4 +1,6 @@
-public class RegularAppointment extends  Appointment{
+package model;
+
+public class RegularAppointment extends Appointment implements RiskAssessable {
     private boolean followUp;
     private String visitType;
 
@@ -14,8 +16,13 @@ public class RegularAppointment extends  Appointment{
     }
     @Override
     public String getAppointmentType() {
-        return "Regular Appointment";
+        return "Regular model.Appointment";
     }
+    @Override
+    public String assessRiskleve(){
+        return "LOW";
+    }
+
 
 
     @Override
@@ -42,7 +49,11 @@ public class RegularAppointment extends  Appointment{
     }
 
     public void setVisitType(String visitType){
-        this.visitType = visitType;
+        if(visitType.isEmpty()){
+            throw new IllegalArgumentException("visit type cannot be empty");
+        }else{
+            this.visitType = visitType;
+        }
     }
     public String getVisitType(){
         return  visitType;

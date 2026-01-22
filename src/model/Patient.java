@@ -1,3 +1,4 @@
+package model;
 
 public class Patient {
     private int patientId;
@@ -17,14 +18,11 @@ public class Patient {
         this.hasInsurance = hasInsurance;
 
     }
-
-
-
     public void setPatient_age(int patient_age) {
         if (patient_age > 0) {
+            throw new  IllegalArgumentException("🚨ERROR: THIS AGE CANNOT BE REAL ");
+        }else{
             this.patient_age = patient_age;
-        } else if (patient_age <= 0) {
-            System.out.println("ERROR: THIS AGE CANNOT BE REAL ");
         }
 
     }
@@ -38,9 +36,9 @@ public class Patient {
 
     public void setPatientId(int patientId) {
         if(patientId <=0) {
-            this.patientId = patientId;
+            throw new IllegalArgumentException("🚨ERROR: ID cannot be negative or zero:");
         }else{
-            System.out.println("🚨ERROR:id CANNOT BE NEGATIVE");
+            this.patientId = patientId;
         }
     }
 
@@ -52,9 +50,8 @@ public class Patient {
     public void setPatientName(String patientName) {
         if(patientName != null && !patientName.isEmpty()){
             this.patientName = patientName;
-
         }else{
-            System.out.println("ERROR:NAME CANNOT BE EMPTY");
+            throw new IllegalArgumentException("🚨ERROR: Name cannot be empty");
         }
     }
 

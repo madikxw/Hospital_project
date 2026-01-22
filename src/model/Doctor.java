@@ -1,3 +1,4 @@
+package model;
 
 public class Doctor {
     private int  doctorId;
@@ -20,10 +21,10 @@ public class Doctor {
     }
 
     public void setDoctorId(int doctorId) {
-        if(doctorId <0) {
-            this.doctorId = doctorId;
+        if(doctorId <=0) {
+            throw new IllegalArgumentException("🚨ERROR:ID cannot be negative or zero");
         }else{
-            System.out.println("🚨ERROR:id CANNOT BE NEGATIVE");
+            this.doctorId = doctorId;
         }
     }
 
@@ -34,10 +35,11 @@ public class Doctor {
 
     public void setDoctorName(String doctorName) {
 
-        if(doctorName != null && doctorName.isEmpty()){
-            this.doctorName = doctorName;
+        if(doctorName == null && doctorName.isEmpty()){
+            throw new IllegalArgumentException("Name cannot be empty");
         }else{
-            System.out.println("🚨ERROR:NAME CANNOT BE EMPTY");
+            this.doctorName = doctorName;
+
         }
     }
 
