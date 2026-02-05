@@ -128,13 +128,12 @@ public class AppointmentDAO {
 
 
             while (rs.next()) {
-                System.out.println(
-                        rs.getInt("appointment_id") + " | " +
-                                rs.getString("type") + " | " +
-                                rs.getString("date") + " " +
-                                rs.getString("time") + " | status: " +
-                                rs.getString("status")
-                );
+                System.out.println("id : " + rs.getInt("appointment_id"));
+                System.out.println("type:"+ rs.getString("type"));
+                System.out.println("data " +   rs.getString("date"));
+                System.out.println("status: " + rs.getString("status"));
+
+
             }
 
             rs.close();
@@ -167,18 +166,15 @@ public class AppointmentDAO {
                                 " | Ambulance: " + rs.getBoolean("ambulance_required")
                 );
             }
-
             rs.close();
             ps.close();
-
         } catch (Exception e) {
-            System.out.println("❌ Failed to load emergency appointments");
+            System.out.println(" Failed to load emergency appointments");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
         }
     }
-
     public void performAllAppointments() {
 
         String sql = "SELECT * FROM appointment";
@@ -220,7 +216,7 @@ public class AppointmentDAO {
             ps.close();
 
         } catch (Exception e) {
-            System.out.println("❌ Polymorphism demo failed");
+            System.out.println(" Polymorphism failed");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
