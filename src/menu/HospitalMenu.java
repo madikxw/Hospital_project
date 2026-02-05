@@ -34,23 +34,38 @@ public class HospitalMenu implements Menu {
                 scanner.nextLine();
 
                 switch (choice) {
-                    case 1 -> addPatient();
-                    case 2 -> viewAllPatients();
-                    case 3 -> addDoctor();
-                    case 4 -> viewAllDoctors();
-                    case 5 -> addRegularAppointment();
-                    case 6 -> addEmergencyAppointment();
-                    case 7 -> viewAllAppointments();
-                    case 8 -> viewEmergencyAppointments();
-                    case 9 -> demonstratePolymorphism();
-                    case 10 -> running = false;
+                    case 1:
+                        addPatient();
+                    case 2:
+                        viewAllPatients();
+                    case 3:
+                        addDoctor();
+                    case 4:
+                        viewAllDoctors();
+                    case 5 :
+                        addRegularAppointment();
+                    case 6 :
+                        addEmergencyAppointment();
+                    case 7 :
+                        viewAllAppointments();
+                    case 8 :
+                        viewEmergencyAppointments();
+                    case 9 :
+                        demonstratePolymorphism();
+                    case 10 :
+                        running = false;
 
-                    case 11 -> updateDoctor();
-                    case 12 -> deleteDoctor();
-                    case 13 -> searchDoctorByName();
-                    case 14 -> searchDoctorByExperience();
+                    case 11 :
+                        updateDoctor();
+                    case 12 :
+                        deleteDoctor();
+                    case 13 :
+                        searchDoctorByName();
+                    case 14 : searchDoctorByExperience();
 
-                    default -> System.out.println("❌ Invalid choice");
+
+                    default :
+                        System.out.println("❌ Invalid choice");
                 }
 
             } catch (Exception e) {
@@ -59,7 +74,6 @@ public class HospitalMenu implements Menu {
             }
         }
     }
-
     @Override
     public void DisplayMenu() {
         System.out.println("""
@@ -86,13 +100,10 @@ public class HospitalMenu implements Menu {
         System.out.print("Enter choice: ");
     }
 
-
-
     private void addPatient() {
         System.out.print("Patient ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-
         System.out.print("Name: ");
         String name = scanner.nextLine();
 
@@ -132,7 +143,6 @@ public class HospitalMenu implements Menu {
 
         doctorDAO.InsertDoctor(new Doctor(id, name, exp,specialization));
     }
-
     private void viewAllDoctors() {
         doctorDAO.getAllDoctor();
     }
@@ -144,22 +154,17 @@ public class HospitalMenu implements Menu {
 
         System.out.print("New name: ");
         String name = scanner.nextLine();
-
         System.out.print("New specialization: ");
         String specialization = scanner.nextLine();
-
         System.out.print("New experience: ");
         int exp = scanner.nextInt();
         scanner.nextLine();
-
         doctorDAO.Updatedoctor(new Doctor(id, name, exp,specialization));
     }
-
     private void deleteDoctor() {
         System.out.print("Doctor ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
-
         doctorDAO.DeleteDoctor(id);
     }
 
@@ -176,12 +181,9 @@ public class HospitalMenu implements Menu {
         doctorDAO.SearchByExperience(exp);
     }
 
-
-
     private void addRegularAppointment() {
         appointmentDAO.insertRegularAppointment(scanner);
     }
-
     private void addEmergencyAppointment() {
         appointmentDAO.insertEmergencyAppointment(scanner);
     }

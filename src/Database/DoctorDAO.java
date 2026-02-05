@@ -36,11 +36,11 @@ public class DoctorDAO{
                 int id = resultSet.getInt("doctor_id");
                 String name = resultSet.getString("name");
                 int experience_years = resultSet.getInt("experience_years");
-                String spicalization  = resultSet.getString("specalization");
+                String specialization  = resultSet.getString("specalization");
                 System.out.println("ID:" + id);
                 System.out.println("name: "+name);
                 System.out.println("experience: "+experience_years);
-                System.out.println("specialization"+ spicalization);
+                System.out.println("specialization"+ specialization);
             }
             resultSet.close();
             statement.close();
