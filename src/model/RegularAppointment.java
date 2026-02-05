@@ -14,6 +14,7 @@ public class RegularAppointment extends Appointment implements RiskAssessable {
         this.followUp = followUp;
         this.visitType = visitType;
     }
+
     @Override
     public String getAppointmentType() {
         return "Regular model.Appointment";

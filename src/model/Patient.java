@@ -4,13 +4,13 @@ public class Patient {
     private int patientId;
     private String patientName;
     private String patientDisease;
-    private String hasInsurance;
+    private boolean hasInsurance;
     private int patient_age;
 
     public Patient(int patientId,
                    String patientName,
                    int patient_age,
-                   String patientDisease, String hasInsurance){
+                   String patientDisease, boolean hasInsurance){
         this.patientId = patientId;
         this.patientName = patientName;
         this.patient_age = patient_age;
@@ -66,11 +66,11 @@ public class Patient {
 
 
 
-    public void setHasInsurance(String  hasInsurance) {
+    public void setHasInsurance(boolean  hasInsurance) {
         this.hasInsurance = hasInsurance;
     }
 
-    public  String getHasInsurance(){
+    public  boolean getHasInsurance(){
         return  hasInsurance;
     }
 
