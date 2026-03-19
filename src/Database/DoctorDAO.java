@@ -1,4 +1,6 @@
 package Database;
+import java.util.List;
+import java.util.ArrayList;
 import model.Doctor;
 import java.sql.ResultSet;
 import java.sql.*;
@@ -36,11 +38,11 @@ public class DoctorDAO{
                 int id = resultSet.getInt("doctor_id");
                 String name = resultSet.getString("name");
                 int experience_years = resultSet.getInt("experience_years");
-                String specialization  = resultSet.getString("specalization");
+                String specialization  = resultSet.getString("specialization");
                 System.out.println("ID:" + id);
                 System.out.println("name: "+name);
                 System.out.println("experience: "+experience_years);
-                System.out.println("specialization"+ specialization);
+                System.out.println("specialization: "+ specialization);
             }
             resultSet.close();
             statement.close();
@@ -52,8 +54,10 @@ public class DoctorDAO{
             DatabaseConnection.closeConnection(connection);
         }
     }
+
+
     public void SearchByname(String name){
-        String sql = "SELECT *FROM doctor where  ILIKE name = ?";
+        String sql = "SELECT * FROM doctor WHERE name ILIKE ?";
         Connection connection = DatabaseConnection.getConnection();
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -75,46 +79,45 @@ public class DoctorDAO{
         }
 
     }
+
+
     public boolean Updatedoctor(Doctor doctor){
-        String sql = "UPDATE doctor SET name = ?, specialization = ? ,experience_years = ? WHERE doctor_id = ? ";
+        String sql = "UPDATE dcotor SET name = ?,specialization = ?,experience_years = ? WHERE doctor_id = ?";
+
         Connection connection = DatabaseConnection.getConnection();
         if(connection ==null){
-            return false;
+            System.out.println("error");
+            return  false;
         }
         try{
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, doctor.getDoctorName());
-            ps.setString(2, doctor.getSpecialization());
-            ps.setInt(3,doctor.getExperienceYears());
-            ps.setInt(4,doctor.getDoctorId());
-            int rows = ps.executeUpdate();
-            ps.close();
-            if(rows >0){
-                System.out.println("successfully added");
-                return  true;
-            }
+            PreparedStatement sd = connection.prepareStatement(sql);
+            sd.setString(1,doctor.getDoctorName());
+            sd.setString(2, doctor.getSpecialization());
+            sd.setInt(3,doctor.getExperienceYears());
+            sd.setInt(4,doctor.getDoctorId());
 
-        } catch(SQLException e ){
+        }catch (SQLException e ){
             System.out.println("error");
             e.printStackTrace();
         }finally {
             DatabaseConnection.closeConnection(connection);
         }
-        return  false;
+        return false;
+
     }
+
+
     public void DeleteDoctor(int id){
-        String sql = "DELETE* FROM doctor WHERE doctor_id = ?";
+        String sql = "DELETE *FROM doctor WHERE doctor_id = ?";
         Connection connection = DatabaseConnection.getConnection();
         try{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,id);
-            int rows = statement.executeUpdate();
-            if(rows>0){
-                System.out.println("successfully deleted");
-            }else{
-                System.out.println("error");
+            int row = statement.executeUpdate();
+            if(row>0){
+                System.out.println("success");
             }
-
+            statement.close();
 
         }catch (SQLException e ){
             System.out.println("error");
@@ -122,35 +125,34 @@ public class DoctorDAO{
         }finally {
             DatabaseConnection.closeConnection(connection);
         }
-
     }
 
-    public void SearchByExperience(int minYears){
-        String sql = "SELECT*FROM doctor where experience_years >=?";
+    public List<Doctor> searchByMinExperience(int minExperience) {
+        List<Doctor> doctors = new ArrayList<>();
+        String sql = "SELECT * FROM doctor WHERE experience_years >= ? ORDER BY experience_years DESC";
         Connection connection = DatabaseConnection.getConnection();
-        try{
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1,minYears);
-            ResultSet resultSet = statement.executeQuery();
-            boolean found = false;
-            while(resultSet.next()){
-                found = true;
-                System.out.println("ID: "+ resultSet.getInt("doctor_id"));
-                System.out.println("name: "+ resultSet.getString("name"));
-                System.out.println("specialization: "+ resultSet.getString("specialization"));
-                System.out.println("Experience:" + resultSet.getInt("experience_years"));
-            }
-            if(!found){
-                System.out.println("sorry didnt found");
-            }
-            resultSet.close();
-            statement.close();
-        }catch (SQLException e ){
-            System.out.println("error");
-            e.printStackTrace();
-        }finally {
-            DatabaseConnection.closeConnection(connection);
+        if (connection == null) {
+            System.out.println("connection failed");
+            return doctors;
         }
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, minExperience);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Doctor doctor = new Doctor();
+                doctor.setDoctorId(rs.getInt("doctor_id"));
+                doctor.setDoctorName(rs.getString("name"));
+                doctor.setSpecialization(rs.getString("specialization"));
+                doctor.setExperienceYears(rs.getInt("experience_years"));
+                doctors.add(doctor);
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error");
+            e.printStackTrace();
+        }
+        return doctors;
     }
 
 }

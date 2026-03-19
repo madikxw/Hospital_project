@@ -81,4 +81,6 @@ public class Doctor {
                 "\nExperience: " + getExperienceInfo() +
                 "\nSpecialization: " + specialization;
     }
+    public Doctor() {
+    }
 }
